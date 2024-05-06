@@ -11,6 +11,16 @@ export class SLL {
         this.head = node;
         ++this.length;
     }
+    fromValues(...values: number[]) {
+        this.head = null;
+        this.length = 0;
+        for(let i = values.length; i > 0; --i) {
+            const next: SNode | null = this.head;
+            const node: SNode = new SNode(values[i - 1], next);
+            this.head = node;
+            ++this.length;
+        }
+    }
     
 }
 // Single Node
