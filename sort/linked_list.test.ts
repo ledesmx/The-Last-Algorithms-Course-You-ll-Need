@@ -40,4 +40,25 @@ describe("Single Linked List", () => {
             expect(ll.head?.next?.value).toBe(1);
         });
     });
+    describe("#getByIndex", () => {
+        test("The index is negative", () => {
+            const ll = new SLL();
+            expect(ll.getByIndex(-3)).toBeNull();
+        });
+        test("The index is 0", () => {
+            const ll = new SLL();
+            ll.fromValues(4, 7, 9, 1);
+            expect(ll.getByIndex(0)).toBe(4);
+        });
+        test("The index is in the middle of the list", () => {
+            const ll = new SLL();
+            ll.fromValues(4, 7, 2, 6, 8, 9);
+            expect(ll.getByIndex(3)).toBe(6);
+        });
+        test("The index is greater thant the length", () => {
+            const ll = new SLL();
+            ll.fromValues(3, 5, 7, 8, 9);
+            expect(ll.getByIndex(10)).toBeNull();
+        });
+    });
 });
