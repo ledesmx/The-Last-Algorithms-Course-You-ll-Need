@@ -21,6 +21,17 @@ export class SLL {
             ++this.length;
         }
     }
+    getByIndex(index: number): number | null {
+        if( index < 0 || index >= this.length ) {
+            return null;
+        }
+        let currentNode: SNode | null | undefined = this.head;
+        for(let i = 0; i < index; ++i) {
+            currentNode = currentNode?.next;
+        }
+        const value = currentNode?.value;
+        return value ? value : null;
+    }
     
 }
 // Single Node
