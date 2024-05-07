@@ -21,7 +21,7 @@ export class SLL {
             ++this.length;
         }
     }
-    getByIndex(index: number): number | null {
+    getByIndex(index: number): SNode | null {
         if( index < 0 || index >= this.length ) {
             return null;
         }
@@ -29,10 +29,24 @@ export class SLL {
         for(let i = 0; i < index; ++i) {
             currentNode = currentNode?.next;
         }
-        const value = currentNode?.value;
-        return value ? value : null;
+        return currentNode ? currentNode : null;
     }
-    
+    insertAtIndex(value: number, index: number) {
+        if( index < 0 || (index >= this.length && index !== 0 )) {
+            return;
+        }
+        if( index === 0) {
+            this.insertAtHead(value);
+            return;
+        }
+        const prevNode = this.getByIndex(index - 1);
+        const nextNode = prevNode?.next;
+        const newNode = new SNode(value, nextNode ? nextNode : null);
+        if( prevNode) {
+            prevNode.next = newNode;
+        }
+        ++this.length;
+    }
 }
 // Single Node
 class SNode {
