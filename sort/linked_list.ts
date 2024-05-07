@@ -47,6 +47,14 @@ export class SLL {
         }
         ++this.length;
     }
+    removeAtHead() {
+        if(!this.head) {
+            return;
+        }
+        const newHead = this.head.next;
+        this.head = newHead;
+        --this.length;
+    }
 }
 // Single Node
 class SNode {
