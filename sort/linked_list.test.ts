@@ -104,4 +104,30 @@ describe("Single Linked List", () => {
             expect(ll.length).toBe(4);
         });
     });
+    describe("#removeAtHead", () => {
+        test("The list has NO values", () => {
+            const ll = new SLL();
+            ll.removeAtHead();
+            expect(ll.head).toBeNull();
+            expect(ll.length).toBe(0);
+        });
+        test("The list has only one value", () => {
+            const ll = new SLL();
+            ll.fromValues(6);
+            ll.removeAtHead();
+            expect(ll.head).toBeNull();
+            expect(ll.length).toBe(0);
+        });
+        test("The list has many values", () => {
+            const ll = new SLL();
+            ll.fromValues(4, 6, 8, 9, 0);
+            ll.removeAtHead();
+            expect(ll.head?.value).toBe(6);
+            expect(ll.length).toBe(4);
+
+            ll.removeAtHead();
+            expect(ll.head?.value).toBe(8);
+            expect(ll.length).toBe(3);
+        });
+    });
 });
