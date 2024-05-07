@@ -48,17 +48,60 @@ describe("Single Linked List", () => {
         test("The index is 0", () => {
             const ll = new SLL();
             ll.fromValues(4, 7, 9, 1);
-            expect(ll.getByIndex(0)).toBe(4);
+            expect(ll.getByIndex(0)?.value).toBe(4);
         });
         test("The index is in the middle of the list", () => {
             const ll = new SLL();
             ll.fromValues(4, 7, 2, 6, 8, 9);
-            expect(ll.getByIndex(3)).toBe(6);
+            expect(ll.getByIndex(3)?.value).toBe(6);
         });
         test("The index is greater thant the length", () => {
             const ll = new SLL();
             ll.fromValues(3, 5, 7, 8, 9);
             expect(ll.getByIndex(10)).toBeNull();
+        });
+    });
+    describe("#insertAtIndex", () => {
+        test("The index is negative", () => {
+            const ll = new SLL();
+            ll.fromValues(2, 5, 6, 8);
+            ll.insertAtIndex(5, -3);
+            expect(ll.head?.value).toBe(2);
+            expect(ll.length).toBe(4);
+        });
+        test("The index is 0", () => {
+            const ll = new SLL();
+            ll.fromValues(5, 7, 8, 3);
+            ll.insertAtIndex(6, 0);
+            expect(ll.head?.value).toBe(6);
+            expect(ll.length).toBe(5);
+            ll.insertAtIndex(3, 0);
+            expect(ll.head?.value).toBe(3);
+            expect(ll.length).toBe(6);
+
+            const ll2 = new SLL();
+            ll2.insertAtIndex(7, 0);
+            ll2.insertAtIndex(9, 0);
+            expect(ll2.head?.value).toBe(9);
+            expect(ll2.length).toBe(2);
+        });
+        test("The incex is in the middle of the list", () => {
+            const ll = new SLL();
+            ll.fromValues(5, 7, 8, 0);
+            ll.insertAtIndex(2, 2);
+            expect(ll.head?.value).toBe(5);
+            expect(ll.length).toBe(5);
+
+            ll.insertAtIndex(1, 1);
+            expect(ll.head?.value).toBe(5);
+            expect(ll.length).toBe(6);
+        });
+        test("The index is greater than the length", () => {
+            const ll = new SLL();
+            ll.fromValues(2, 6, 9, 2);
+            ll.insertAtIndex(1, 4);
+            ll.insertAtIndex(1, 9);
+            expect(ll.length).toBe(4);
         });
     });
 });
