@@ -55,6 +55,21 @@ export class SLL {
         this.head = newHead;
         --this.length;
     }
+    removeAtIndex(index: number) {
+        if(index < 0 || index >= this.length) {
+            return;
+        }
+        if(index === 0) {
+            this.removeAtHead();
+            return;
+        }
+        const prevNode = this.getByIndex(index - 1);
+        const nextNode = prevNode?.next?.next;
+        if(prevNode) {
+            prevNode.next = nextNode ? nextNode : null;
+        }
+        --this.length;
+    }
 }
 // Single Node
 class SNode {
