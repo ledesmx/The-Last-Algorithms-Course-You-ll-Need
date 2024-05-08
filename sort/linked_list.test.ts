@@ -130,4 +130,51 @@ describe("Single Linked List", () => {
             expect(ll.length).toBe(3);
         });
     });
+    describe("removeAtIndex", () => {
+        test("The index is lower than 0", () => {
+            const ll = new SLL();
+            ll.fromValues(4, 6);
+
+            ll.removeAtIndex(-3);
+            expect(ll.head?.value).toBe(4);
+            expect(ll.length).toBe(2);
+        });
+        test("The index is 0", () => {
+            const ll = new SLL();
+            ll.fromValues(3, 7, 9, 7);
+
+            ll.removeAtIndex(0);
+            expect(ll.head?.value).toBe(7);
+            expect(ll.length).toBe(3);
+
+            ll.removeAtIndex(0);
+            expect(ll.head?.value).toBe(9);
+            expect(ll.length).toBe(2);
+        });
+        test("The index is in the middle of the list", () => {
+            const ll = new SLL();
+            ll.fromValues(6, 8, 9, 2);
+
+            ll.removeAtIndex(2);
+            expect(ll.head?.value).toBe(6);
+            expect(ll.length).toBe(3);
+        });
+        test("The index is greater than the list", () => {
+            const ll = new SLL();
+            ll.fromValues(5, 7, 8, 9);
+
+            ll.removeAtIndex(10);
+            expect(ll.length).toBe(4)
+
+            ll.removeAtIndex(4);
+            expect(ll.length).toBe(4);
+        });
+        test("The list has no values", () => {
+            const ll = new SLL();
+            
+            ll.removeAtIndex(0);
+            expect(ll.head).toBeNull();
+            expect(ll.length).toBe(0);
+        });
+    });
 });
