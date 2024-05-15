@@ -25,8 +25,17 @@ export class Queue<T> {
         this.tail = node;
         ++this.length;
     }
-    deque() {
-
+    deque(): T | null {
+        // If there is nodes then deque
+        if(this.head) {
+            const value = this.head.value;
+            this.head = this.head.next;
+            --this.length;
+            return value;
+        }
+        
+        // Otherwise return null
+        return null;
     }
 }
 type Node<T> = {
