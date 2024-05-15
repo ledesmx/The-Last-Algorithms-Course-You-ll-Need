@@ -28,3 +28,28 @@ describe("#enqueue", () => {
         expect(q.tail?.value).toBe("dark");
     })
 });
+
+describe("#deque", () => {
+    test("When the queue has no nodes", () => {
+        const q =  new Queue<number>();
+
+        const value = q.deque();
+        expect(value).toBeNull();
+        expect(q.length).toBe(0);
+    });
+    test("When the queue has already nodes", () => {
+        const q = new Queue<string>();
+
+        q.enqueue("1234");
+        q.enqueue("ONE");
+        q.enqueue("Yes");
+        q.enqueue("false")
+
+        expect(q.deque()).toBe("1234");
+        expect(q.length).toBe(3);
+        expect(q.deque()).toBe("ONE");
+        expect(q.length).toBe(2);
+        expect(q.deque()).toBe("Yes");
+        expect(q.length).toBe(1);
+    });
+});
