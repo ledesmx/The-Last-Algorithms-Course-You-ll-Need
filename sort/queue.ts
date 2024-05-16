@@ -12,8 +12,7 @@ export class Queue<T> {
 
         // If there is no nodes just point HEAD and TAIL to the new node
         if(!this.tail && !this.head) {
-            this.tail = node;
-            this.head = node;
+            this.tail = this.head = node;
             ++this.length;
             return;
         }
@@ -26,16 +25,20 @@ export class Queue<T> {
         ++this.length;
     }
     deque(): T | null {
-        // If there is nodes then deque
-        if(this.head) {
-            const value = this.head.value;
-            this.head = this.head.next;
-            --this.length;
-            return value;
+        // If there is NO nodes then return null
+        if(!this.head) {
+            return null;
         }
         
-        // Otherwise return null
-        return null;
+        // Otherwise deque
+        const value = this.head.value;
+        this.head = this.head.next;
+        --this.length;
+
+        if(!this.head) {
+            this.tail = this.head;
+        }
+        return value;
     }
 }
 type Node<T> = {

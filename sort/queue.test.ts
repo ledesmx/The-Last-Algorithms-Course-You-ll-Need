@@ -53,3 +53,34 @@ describe("#deque", () => {
         expect(q.length).toBe(1);
     });
 });
+
+describe("#enqueue -> #deque -> enqueue", () => {
+    test("Fill, empty and fill again the queue", () => {
+        const q = new Queue();
+
+        q.enqueue("AAAA");
+        q.enqueue("BBBB");
+        q.enqueue("CCCC");
+        q.enqueue("DDDD");
+
+        expect(q.length).toBe(4);
+        expect(q.head?.value).toBe("AAAA");
+        expect(q.tail?.value).toBe("DDDD");
+
+        expect(q.deque()).toBe("AAAA");
+        expect(q.deque()).toBe("BBBB");
+        expect(q.deque()).toBe("CCCC");
+        expect(q.deque()).toBe("DDDD");
+
+        expect(q.length).toBe(0);
+        expect(q.head?.value).toBeUndefined();
+        expect(q.tail?.value).toBeUndefined();
+
+        q.enqueue("EEEE");
+        q.enqueue("FFFF");
+
+        expect(q.length).toBe(2);
+        expect(q.head?.value).toBe("EEEE");
+        expect(q.tail?.value).toBe("FFFF");
+    });
+});
