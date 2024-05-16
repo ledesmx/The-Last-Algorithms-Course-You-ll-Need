@@ -16,3 +16,24 @@ describe("#push", () => {
         expect(s.length).toBe(5);
     });
 });
+describe("#peek", () => {
+    test("There is no nodes", () => {
+        const s = new Stack<number>();
+        expect(s.peek()).toBeUndefined();
+    });
+    test("Push nodes and peek. 3 Times.", () => {
+        const s = new Stack<string>();
+
+        s.push("Yes");
+        expect(s.peek()).toBe("Yes");
+
+        s.push("Hello");
+        s.push("1234");
+        expect(s.peek()).toBe("1234");
+
+        s.push("NO");
+        s.push("AAA");
+        s.push("Michael");
+        expect(s.peek()).toBe("Michael");
+    });
+});
