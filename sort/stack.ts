@@ -22,7 +22,7 @@ export class Stack<T> {
     // pop(): T {
 
     // }
-    // peek(): T {
-
-    // }
+    peek(): T | undefined {
+        return this.head?.value;
+    }
 }
