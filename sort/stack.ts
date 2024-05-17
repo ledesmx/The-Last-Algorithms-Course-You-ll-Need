@@ -11,7 +11,7 @@ export class Stack<T> {
         this.head = undefined;
         this.length = 0;
     }
-    push(value: T) {
+    push(value: T): void {
         const node: Node<T> = {
             value: value,
             next: this.head,

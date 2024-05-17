@@ -65,3 +65,29 @@ describe("#pop", () => {
         expect(s.length).toBe(4);
     });
 });
+
+describe("#push #pop and #push", () => {
+    test("Fill, empty and fill again the stack", () => {
+        const s = new Stack<number>();
+
+        s.push(5);
+        s.push(10);
+        s.push(15);
+
+        expect(s.length).toBe(3);
+        expect(s.peek()).toBe(15);
+
+        expect(s.pop()).toBe(15);
+        expect(s.pop()).toBe(10);
+        expect(s.pop()).toBe(5);
+
+        expect(s.length).toBe(0);
+        expect(s.peek()).toBeUndefined();
+
+        s.push(20);
+        s.push(25);
+
+        expect(s.length).toBe(2);
+        expect(s.peek()).toBe(25);
+    });
+});
