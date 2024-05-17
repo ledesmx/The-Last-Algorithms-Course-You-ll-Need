@@ -37,3 +37,31 @@ describe("#peek", () => {
         expect(s.peek()).toBe("Michael");
     });
 });
+
+describe("#pop", () => {
+    test("Pop when there is no nodes", () => {
+        const s = new Stack<boolean>();
+
+        expect(s.pop()).toBeUndefined();
+        expect(s.length).toBe(0);
+    });
+    test("Push and pop 3 times", () => {
+        const s = new Stack<string>();
+
+        s.push("101");
+        s.push("Yes");
+        s.push("No");
+        s.push("900");
+        expect(s.pop()).toBe("900");
+        expect(s.length).toBe(3);
+
+        s.push("333");
+        s.push("HELLO");
+        expect(s.pop()).toBe("HELLO");
+        expect(s.length).toBe(4);
+
+        s.push("1234");
+        expect(s.pop()).toBe("1234");   
+        expect(s.length).toBe(4);
+    });
+});
