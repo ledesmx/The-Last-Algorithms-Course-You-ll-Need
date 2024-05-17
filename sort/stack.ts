@@ -19,9 +19,15 @@ export class Stack<T> {
         this.head = node;
         this.length++;
     }
-    // pop(): T {
-
-    // }
+    pop(): T | undefined {
+        if(!this.head) {
+            return this.head
+        }
+        const currentHead = this.head
+        this.head = this.head?.next
+        this.length--;
+        return currentHead?.value
+    }
     peek(): T | undefined {
         return this.head?.value;
     }
