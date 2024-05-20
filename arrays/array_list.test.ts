@@ -26,6 +26,24 @@ describe("#fromValues", () => {
     });
 });
 
+describe("#getByIndex", () => {
+    test("When the index is greater than the length", () => {
+        const al = new ArrayList<number>(3);
+        al.fromValues(2, 5, 7);
+
+        expect(al.getByIndex(3)).toBeUndefined();
+        expect(al.getByIndex(4)).toBeUndefined();
+    });
+    test("When the index is less than the length", () => {
+        const al = new ArrayList<number>(3);
+        al.fromValues(2, 5, 7);
+
+        expect(al.getByIndex(2)).toBe(7);
+        expect(al.getByIndex(1)).toBe(5);
+        expect(al.getByIndex(0)).toBe(2);
+    });
+});
+
 // describe("#setByIndex", () => {
 //     test("Set with length of 0", () => {
 //         const al = new ArrayList<number>();
