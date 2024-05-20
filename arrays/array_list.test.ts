@@ -42,12 +42,11 @@ describe("#getByIndex", () => {
         expect(al.getByIndex(1)).toBe(5);
         expect(al.getByIndex(0)).toBe(2);
     });
-});
+    test("When the array has no values", () => {
+        const al = new ArrayList<number>(3);
 
-// describe("#setByIndex", () => {
-//     test("Set with length of 0", () => {
-//         const al = new ArrayList<number>();
-//         al.setByIndex(1, 4);
-//     });
-//     test("Set")
-// });
+        expect(al.getByIndex(2)).toBeNull();
+        expect(al.getByIndex(1)).toBeNull();
+        expect(al.getByIndex(0)).toBeNull();
+    });
+});
