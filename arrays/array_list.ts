@@ -8,18 +8,21 @@ export class ArrayList<T> {
         this.array = [];
     }
     fromValues(...values: T[]) {
-        if(values.length >= this.length) {
+        if(values.length > this.length) {
             return;
         }
         for(let i = 0; i < values.length; ++i) {
             this.array[i] = values[i]; 
         }
     }
+    getByIndex(index: number): T | undefined {
+        if(index >= this.length) {
+            return undefined;
+        }
+        return this.array[index];
+    }
     // setByIndex(value: T, index: number): void {
 
-    // }
-    // getByIndex(index: number): T {
-        
     // }
     // push(value: T): void {
 
