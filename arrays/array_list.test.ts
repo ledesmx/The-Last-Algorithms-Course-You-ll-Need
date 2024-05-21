@@ -32,30 +32,26 @@ describe("#fromValues", () => {
     });
 });
 
-// describe("#getByIndex", () => {
-//     test("When the index is greater than the length", () => {
-//         const al = new ArrayList<number>(3);
-//         al.fromValues(2, 5, 7);
-
-//         expect(al.getByIndex(3)).toBeUndefined();
-//         expect(al.getByIndex(4)).toBeUndefined();
-//     });
-//     test("When the index is less than the length", () => {
-//         const al = new ArrayList<number>(3);
-//         al.fromValues(2, 5, 7);
-
-//         expect(al.getByIndex(2)).toBe(7);
-//         expect(al.getByIndex(1)).toBe(5);
-//         expect(al.getByIndex(0)).toBe(2);
-//     });
-//     test("When the array has no values", () => {
-//         const al = new ArrayList<number>(3);
-
-//         expect(al.getByIndex(2)).toBeNull();
-//         expect(al.getByIndex(1)).toBeNull();
-//         expect(al.getByIndex(0)).toBeNull();
-//     });
-// });
+describe("#getByIndex", () => {
+    test("When the index is greater than the array it returns undefined", () => {
+        const al = new ArrayList<number>(3);
+        al.fromValues(2, 5, 7);
+        expect(al.getByIndex(3)).toBeUndefined();
+        expect(al.getByIndex(4)).toBeUndefined();
+    });
+    test("When the index is within the array it should works", () => {
+        const al = new ArrayList<number>(3);
+        al.fromValues(2, 5, 7);
+        expect(al.getByIndex(2)).toBe(7);
+        expect(al.getByIndex(1)).toBe(5);
+        expect(al.getByIndex(0)).toBe(2);
+    });
+    test("When the index is within the capacity bun out of length it returns undefined", () => {
+        const al = new ArrayList<number>(3);
+        expect(al.getByIndex(2)).toBeUndefined();
+        expect(al.getByIndex(0)).toBeUndefined();
+    });
+});
 
 // describe("#setByIndex", () => {
 //     test("When the index is greater than the length", () => {

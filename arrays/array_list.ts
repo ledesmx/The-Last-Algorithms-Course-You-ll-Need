@@ -16,12 +16,9 @@ export class ArrayList<T> {
         }
         this.length = values.length;
     }
-    getByIndex(index: number): T | undefined | null{
+    getByIndex(index: number): T | undefined {
         if(index >= this.length) {
             return undefined;
-        }
-        if(!this.array[index]) {
-            return null;
         }
         return this.array[index];
     }
