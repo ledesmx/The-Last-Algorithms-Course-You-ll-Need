@@ -51,29 +51,41 @@ describe("#getByIndex", () => {
         expect(al.getByIndex(2)).toBeUndefined();
         expect(al.getByIndex(0)).toBeUndefined();
     });
+    test("When the index is less than 0 it returns undefined", () => {
+        const al = new ArrayList<number>();
+        expect(al.getByIndex(-1)).toBeUndefined();
+        expect(al.getByIndex(-5)).toBeUndefined();
+    });
 });
 
-// describe("#setByIndex", () => {
-//     test("When the index is greater than the length", () => {
-//         const al = new ArrayList<number>();
-//         al.setByIndex(1, 4);
+describe("#setAtIndex", () => {
+    test("When the index is greater than the length", () => {
+        const al = new ArrayList<number>();
+        expect(() => al.setAtIndex(1, 4)).toThrow("array list index out of length");
+        expect(al.length).toBe(0);
+        expect(al.capacity).toBe(0);
 
-//         expect(al.length).toBe(0);
-//         expect(al.capacity).toBe(0);
+        const al2 = new ArrayList<string>(3);
+        al2.fromValues("a", "bb", "ccc");
+        expect(() => al2.setAtIndex("dddd", 3)).toThrow("array list index out of length");
+        expect(al2.length).toBe(3);
+        expect(al2.capacity).toBe(3);
 
-//         const al2 = new ArrayList<string>(3);
-//         al2.fromValues("a", "bb", "ccc");
-//         al2.setByIndex("dddd", 3)
-
-//         expect(al.getByIndex(3)).toBeUndefined();
-//         expect(al.length).toBe(3);
-//         expect(al.capacity).toBe(3);
-//     });
-//     test("When the index is less than the length", () => {
-//         const al = new ArrayList<number>(5);
-//         al.setByIndex(1, 4);
-
-//         expect(al.getByIndex(4)).toBeUndefined();
-
-//     });
-// });
+        const al3 = new ArrayList<string>(3);
+        expect(() => al3.setAtIndex("hey", 1)).toThrow("array list index out of length");
+        expect(al3.length).toBe(0);
+        expect(al3.capacity).toBe(3);
+    });
+    test("When the index is less than 0", () => {
+        const al = new ArrayList<string>(3);
+        expect(() => al.setAtIndex("hey", -2)).toThrow("array list index is negative");
+    });
+    test("When the index is into the range of the length", () => {
+        const al = new ArrayList<string>(5);
+        al.fromValues("one", "two", "three", "four");
+        al.setAtIndex("hello", 2);
+        expect(al.getByIndex(2)).toBe("hello");
+        al.setAtIndex("yes", 0);
+        expect(al.getByIndex(0)).toBe("yes");
+    });
+});

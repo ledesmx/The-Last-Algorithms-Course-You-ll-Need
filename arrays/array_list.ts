@@ -17,14 +17,20 @@ export class ArrayList<T> {
         this.length = values.length;
     }
     getByIndex(index: number): T | undefined {
-        if(index >= this.length) {
+        if(index >= this.length || index < 0) {
             return undefined;
         }
         return this.array[index];
     }
-    // setByIndex(value: T, index: number): void {
-
-    // }
+    setAtIndex(value: T, index: number): void {
+        if(index < 0) {
+            throw new Error("array list index is negative");
+        }
+        if(index >= this.length) {
+            throw new Error("array list index out of length");
+        }
+        this.array[index] = value;
+    }
     // push(value: T): void {
 
     // }
