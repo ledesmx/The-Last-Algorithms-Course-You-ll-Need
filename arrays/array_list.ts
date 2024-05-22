@@ -31,9 +31,25 @@ export class ArrayList<T> {
         }
         this.array[index] = value;
     }
-    // push(value: T): void {
+    push(value: T): void {
+        //  NOTE: When the capacity is exceeded it should double its current value
 
-    // }
+        if(this.capacity === 0) {
+            this.capacity++;
+        }
+
+        if(this.length === this.capacity) {
+            let arr: T[] = [];
+            for(let i = 0; i < this.length; ++i) {
+                arr[i] = this.array[i]; 
+            }
+            this.capacity = this.capacity * 2;
+            this.array = arr;
+        }
+
+        this.array[this.length] = value;
+        this.length++;
+    }
     // pop(): T {
 
     // }

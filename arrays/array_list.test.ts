@@ -89,3 +89,29 @@ describe("#setAtIndex", () => {
         expect(al.getByIndex(0)).toBe("yes");
     });
 });
+
+describe("#push", () => {
+    test("When capacity is zero", () => {
+        const al = new ArrayList<string>();
+        al.push("first");
+        expect(al.length).toBe(1);
+        expect(al.capacity).toBe(1);
+        expect(al.getByIndex(0)).toBe("first");
+    });
+    test("When length is less than capacity", () => {
+        const al = new ArrayList<string>(5);
+        al.fromValues("1", "2", "3");
+        al.push("4");
+        expect(al.length).toBe(4);
+        expect(al.capacity).toBe(5);
+        expect(al.getByIndex(3)).toBe("4");
+    });
+    test("When length and capacity are the same", () => {
+        const al = new ArrayList<string>(3);
+        al.fromValues("1", "2", "3");
+        al.push("4");
+        expect(al.length).toBe(4);
+        expect(al.capacity).toBe(6);
+        expect(al.getByIndex(3)).toBe("4");
+    });
+});
