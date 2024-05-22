@@ -115,3 +115,24 @@ describe("#push", () => {
         expect(al.getByIndex(3)).toBe("4");
     });
 });
+
+describe("#pop", () => {
+    test("When capacity is zero", () => {
+        const al = new ArrayList<string>();
+        expect(al.pop()).toBeUndefined();
+    });
+    test("When length is less than capacity", () => {
+        const al = new ArrayList<string>(5);
+        al.fromValues("1", "2", "3");
+        expect(al.pop()).toBe("3");
+        expect(al.length).toBe(2);
+        expect(al.capacity).toBe(5);
+    });
+    test("When length and capacity are the same", () => {
+        const al = new ArrayList<string>(3);
+        al.fromValues("1", "2", "3");
+        expect(al.pop()).toBe("3");
+        expect(al.length).toBe(2);
+        expect(al.capacity).toBe(3);
+    });
+});

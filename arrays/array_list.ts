@@ -50,7 +50,12 @@ export class ArrayList<T> {
         this.array[this.length] = value;
         this.length++;
     }
-    // pop(): T {
-
-    // }
+    pop(): T | undefined {
+        if(this.capacity === 0) {
+            return undefined;
+        }
+        const value = this.array[this.length - 1];
+        this.length--;
+        return value;
+    }
 }
