@@ -136,3 +136,31 @@ describe("#pop", () => {
         expect(al.capacity).toBe(3);
     });
 });
+
+describe("#enqueue", () => {
+    test("when the array has no values", () => {
+        const al =  new ArrayList<string>();
+        al.enqueue("first");
+        expect(al.length).toBe(1);
+        expect(al.capacity).toBe(1);
+        expect(al.getByIndex(0)).toBe("first");
+    });
+    test("When the length is less than the capacity", () => {
+        const al = new ArrayList<string>(5);
+        al.fromValues("AA", "BB", "CC");
+        al.enqueue("ZZ");
+        expect(al.length).toBe(4);
+        expect(al.capacity).toBe(5);
+        expect(al.getByIndex(0)).toBe("ZZ");
+        expect(al.getByIndex(1)).toBe("AA");
+    });
+    test("When the length and capacity are the same", () => {
+        const al = new ArrayList<string>(3);
+        al.fromValues("AA", "BB", "CC");
+        al.enqueue("ZZ");
+        expect(al.length).toBe(4);
+        expect(al.capacity).toBe(6);
+        expect(al.getByIndex(0)).toBe("ZZ");
+        expect(al.getByIndex(3)).toBe("CC");
+    });
+});

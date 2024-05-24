@@ -58,4 +58,32 @@ export class ArrayList<T> {
         this.length--;
         return value;
     }
+    enqueue(value: T) {
+        if(this.capacity === 0) {
+            this.capacity++;
+        }
+
+        let arr: T[] = [];
+        for(let i = 0; i < this.length; ++i) {
+            arr[i + 1] = this.array[i]; 
+        }
+
+        if(this.length === this.capacity) {
+            this.capacity = this.capacity * 2;
+        }
+        this.array = arr;
+
+        this.array[0] = value;
+        this.length++;
+    }
+    // deque() T | undefined {
+        
+    // }
+    // insertAtIndex() {
+
+    // }
+    // removeAtIndex() T | undefined {
+
+    // }
+   
 }
