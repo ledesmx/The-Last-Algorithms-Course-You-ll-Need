@@ -164,3 +164,23 @@ describe("#enqueue", () => {
         expect(al.getByIndex(3)).toBe("CC");
     });
 });
+
+describe("#deque", () => {
+    test("When the array has no values", () => {
+        const al = new ArrayList<string>();
+        expect(al.deque()).toBeUndefined();
+        expect(al.length).toBe(0);
+    });
+    test("When the array has already values", () => {
+        const al = new ArrayList<string>(5);
+        al.fromValues("yes", "444", "noo", "bye", "like")
+        expect(al.deque()).toBe("yes");
+        expect(al.deque()).toBe("444");
+        expect(al.deque()).toBe("noo");
+
+        expect(al.getByIndex(0)).toBe("bye");
+        expect(al.getByIndex(1)).toBe("like");
+        expect(al.length).toBe(2);
+        expect(al.capacity).toBe(5);
+    });
+});

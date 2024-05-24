@@ -76,9 +76,18 @@ export class ArrayList<T> {
         this.array[0] = value;
         this.length++;
     }
-    // deque() T | undefined {
-        
-    // }
+    deque(): T | undefined {
+        if(this.length === 0) {
+            return undefined;
+        }
+
+        const value = this.array[0];
+        for(let i = 1; i < this.length; ++i) {
+            this.array[i - 1] = this.array[i];
+        }
+        this.length--;
+        return value;
+    }
     // insertAtIndex() {
 
     // }
