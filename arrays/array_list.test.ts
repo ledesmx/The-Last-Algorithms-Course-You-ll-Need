@@ -184,3 +184,56 @@ describe("#deque", () => {
         expect(al.capacity).toBe(5);
     });
 });
+
+describe("#insertAtIndex", () => {
+    test("When the index is negative", () => {
+        const al = new ArrayList<number>();
+        expect(() => al.insertAtIndex(4, -2)).toThrow("array list index is negative");
+    });
+    test("When the index is 0", () => {
+        const al = new ArrayList<number>();
+        al.insertAtIndex(5, 0);
+        expect(al.length).toBe(1);
+        expect(al.getByIndex(0)).toBe(5);
+
+        const al2 = new ArrayList<number>(3);
+        al2.fromValues(333, 555, 888);
+        al2.insertAtIndex(999, 0)
+        expect(al2.length).toBe(4);
+        expect(al2.capacity).toBe(6);
+        expect(al2.getByIndex(0)).toBe(999);
+        expect(al2.getByIndex(1)).toBe(333);
+    });
+    test("When the index is in the middle of the array", () => {
+        const al = new ArrayList<number>(5);
+        al.fromValues(333, 555, 888);
+        al.insertAtIndex(999, 1);
+        expect(al.getByIndex(0)).toBe(333);
+        expect(al.getByIndex(1)).toBe(999);
+        expect(al.getByIndex(2)).toBe(555);
+        expect(al.getByIndex(3)).toBe(888);
+        expect(al.length).toBe(4);
+    });
+    test("When the index is at the end of the list", () => {
+        const al = new ArrayList<number>(5);
+        al.fromValues(333, 555, 888, 222, 999);
+        al.insertAtIndex(111, 5);
+        expect(al.getByIndex(4)).toBe(999);
+        expect(al.getByIndex(5)).toBe(111);
+        expect(al.length).toBe(6);
+        expect(al.capacity).toBe(10);
+
+        const al2 = new ArrayList<number>(5);
+        al2.fromValues(333, 555, 888);
+        al2.insertAtIndex(111, 3);
+        expect(al2.getByIndex(2)).toBe(888);
+        expect(al2.getByIndex(3)).toBe(111);
+        expect(al2.length).toBe(4);
+        expect(al2.capacity).toBe(5);
+    });
+    test("When the index is greater than the length", () => {
+        const al = new ArrayList<number>(3);
+        al.fromValues(333, 555, 888);
+        expect(() => al.insertAtIndex(444, 4)).toThrow("array list index out of length");
+    });
+});

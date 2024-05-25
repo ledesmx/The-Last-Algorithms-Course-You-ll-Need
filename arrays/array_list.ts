@@ -7,7 +7,7 @@ export class ArrayList<T> {
         this.capacity = cap;
         this.array = [];
     }
-    fromValues(...values: T[]) {
+    fromValues(...values: T[]): void {
         if(values.length > this.capacity) {
             throw new Error("array capacity exceeded");
         }
@@ -58,7 +58,7 @@ export class ArrayList<T> {
         this.length--;
         return value;
     }
-    enqueue(value: T) {
+    enqueue(value: T): void {
         if(this.capacity === 0) {
             this.capacity++;
         }
@@ -88,9 +88,42 @@ export class ArrayList<T> {
         this.length--;
         return value;
     }
-    // insertAtIndex() {
+    insertAtIndex(value: T, index: number): void {
+        if(index < 0) {
+            throw new Error("array list index is negative");
+        }
+        if(index > this.length) {
+            throw new Error("array list index out of length");
+        }
 
-    // }
+        // When the capacity is exceeded it should double its current value
+        if(this.length === this.capacity) {
+            const arr: T[] = []
+            this.capacity = this.capacity === 0 ? 1 : this.capacity * 2;
+            for(let i = 0; i <= this.length; ++i) {
+                if(i === index) {
+                    arr[i] = value;
+                    continue;
+                }
+                if(i > index) {
+                    arr[i] = this.array[i -1 ];
+                    continue;
+                }
+                
+                arr[i] = this.array[i];
+            }
+            this.array = arr;
+            this.length++;
+            return;
+        }
+
+    for(let i = index; i <= this.length; ++i) {
+        const aux = this.array[i];
+        this.array[i] = value;
+        value = aux;
+    }
+    this.length++;
+    }
     // removeAtIndex() T | undefined {
 
     // }
