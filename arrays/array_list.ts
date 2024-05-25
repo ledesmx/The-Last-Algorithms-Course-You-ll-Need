@@ -117,15 +117,23 @@ export class ArrayList<T> {
             return;
         }
 
-    for(let i = index; i <= this.length; ++i) {
-        const aux = this.array[i];
-        this.array[i] = value;
-        value = aux;
+        for(let i = index; i <= this.length; ++i) {
+            const aux = this.array[i];
+            this.array[i] = value;
+            value = aux;
+        }
+        this.length++;
     }
-    this.length++;
-    }
-    // removeAtIndex() T | undefined {
 
-    // }
-   
+    removeByIndex(index: number): T | undefined {
+        if(index < 0 || index >= this.length){
+            return undefined;
+        }
+        const value = this.array[index];
+        for(let i = index + 1; i < this.length; i++) {
+            this.array[i - 1] = this.array[i];
+        }
+        this.length--;
+        return value;
+    }
 }

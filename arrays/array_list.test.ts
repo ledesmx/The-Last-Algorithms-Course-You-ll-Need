@@ -237,3 +237,47 @@ describe("#insertAtIndex", () => {
         expect(() => al.insertAtIndex(444, 4)).toThrow("array list index out of length");
     });
 });
+
+describe("#removeByIndex", () => {
+    test("When the index is negative", () => {
+        const al = new ArrayList<number>();
+        expect(al.removeByIndex(-3)).toBeUndefined();
+    });
+    test("When the index greater than the length", () => {
+        const al = new ArrayList<number>(3);
+        al.fromValues(2, 4, 6);
+        expect(al.removeByIndex(5)).toBeUndefined();
+        expect(al.removeByIndex(3)).toBeUndefined();
+    });
+    test("When the list has no values", () => {
+        const al = new ArrayList<number>();
+        expect(al.removeByIndex(0)).toBeUndefined();
+    }); 
+    test("When the index is 0", () => {
+        const al = new ArrayList<number>(3);
+        al.fromValues(2, 4, 6);
+        expect(al.removeByIndex(0)).toBe(2);
+        expect(al.removeByIndex(0)).toBe(4);
+        expect(al.length).toBe(1);
+    });
+    test("When the index is in the middle of the list", () => {
+        const al = new ArrayList<number>(6);
+        al.fromValues(2, 4, 6, 9, 0, 3);
+        expect(al.removeByIndex(3)).toBe(9);
+        expect(al.removeByIndex(1)).toBe(4);
+        expect(al.length).toBe(4);
+        expect(al.getByIndex(0)).toBe(2);
+        expect(al.getByIndex(1)).toBe(6);
+        expect(al.getByIndex(2)).toBe(0);
+        expect(al.getByIndex(3)).toBe(3);
+    });
+    test("When the index is at the end of the list", () => {
+        const al = new ArrayList<number>(6);
+        al.fromValues(2, 4, 6, 9, 0, 3);
+        expect(al.removeByIndex(5)).toBe(3);
+        expect(al.removeByIndex(4)).toBe(0);
+        expect(al.length).toBe(4);
+        expect(al.getByIndex(2)).toBe(6);
+        expect(al.getByIndex(3)).toBe(9);
+    });
+});
