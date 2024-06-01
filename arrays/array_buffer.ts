@@ -1,5 +1,5 @@
 export class ArrayBuffer<T> {
-    private array: T[];
+    private array: (T | undefined)[];
     private capacity: number;
     private length: number;
     private head: number;
@@ -24,13 +24,24 @@ export class ArrayBuffer<T> {
         return this.array[this.tail];
     }
     push(value: T): void {
-        // If this is not the first push and the head and tail are the same,
-        // the increment tail
+        // Wheter this is the first push or there is not push at the current tail,
+        // DO NOT increment tail
+        // otherwise increment tail
         if(this.head === this.tail && this.array[this.tail] !== undefined) {
             this.tail = (this.tail + 1) % this.capacity;
         }
         this.array[this.head] = value;
         this.head = (this.head + 1) % this.capacity;
         this.length = Math.min(this.length + 1, this.capacity);
+    }
+    pop(): T | undefined {
+        const value = this.array[this.tail];
+        if(value === undefined) {
+            return value;
+        }
+        this.array[this.tail] = undefined;
+        this.tail = (this.tail + 1) % this.capacity;
+        this.length--;
+        return value;
     }
 }
