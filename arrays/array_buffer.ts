@@ -35,6 +35,16 @@ export class ArrayBuffer<T> {
         this.length = Math.min(this.length + 1, this.capacity);
     }
     pop(): T | undefined {
+        const index = this.head === 0 ? this.capacity - 1 : this.head - 1;
+        const value =  this.array[index];
+        if(value) {
+            this.array[index] = undefined;
+            this.head = index;
+            this.length--;
+        }
+        return value;
+    }
+    shift(): T | undefined {
         const value = this.array[this.tail];
         if(value === undefined) {
             return value;
@@ -43,5 +53,8 @@ export class ArrayBuffer<T> {
         this.tail = (this.tail + 1) % this.capacity;
         this.length--;
         return value;
+    }
+    unshift(): void  {
+        
     }
 }

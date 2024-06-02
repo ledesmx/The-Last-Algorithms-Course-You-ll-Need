@@ -35,38 +35,79 @@ describe("#push", () => {
 
 describe("#pop", () => {
     test("Pop when there are no values yet", () => {
-        const ab = new ArrayBuffer<number>(4);
+        const ab = new ArrayBuffer<string>(4);
         expect(ab.pop()).toBeUndefined();
         expect(ab.getTail()).toBeUndefined();
         expect(ab.getHead()).toBeUndefined();
         expect(ab.getLen()).toBe(0);
         expect(ab.getCap()).toBe(4);
     });
-    test("Pop when there are values", () => {
+    test("Pop When there are values", () => {
+        const ab = new ArrayBuffer<string>(5);
+        ab.push("yes");
+        ab.push("noo");
+        ab.push("you");
+        ab.push("aja");
+        ab.push("hey");
+        expect(ab.pop()).toBe("hey");
+        expect(ab.pop()).toBe("aja");
+        expect(ab.pop()).toBe("you");
+        expect(ab.getTail()).toBe("yes");
+        expect(ab.getHead()).toBe("noo");
+        expect(ab.getLen()).toBe(2);
+        expect(ab.getCap()).toBe(5);
+    });
+    test("Pop when the head reaches the tail", () => {
+        const ab = new ArrayBuffer<string>(3);
+        ab.push("111");
+        ab.push("222");
+        ab.push("333");
+        ab.push("444");
+        expect(ab.pop()).toBe("444");
+        expect(ab.pop()).toBe("333");
+        expect(ab.pop()).toBe("222");
+        expect(ab.pop()).toBeUndefined();
+        expect(ab.getTail()).toBeUndefined();
+        expect(ab.getHead()).toBeUndefined();
+        expect(ab.getLen()).toBe(0);
+        expect(ab.getCap()).toBe(3);
+    });
+});
+
+describe("#shift", () => {
+    test("Shift when there are no values yet", () => {
+        const ab = new ArrayBuffer<number>(4);
+        expect(ab.shift()).toBeUndefined();
+        expect(ab.getTail()).toBeUndefined();
+        expect(ab.getHead()).toBeUndefined();
+        expect(ab.getLen()).toBe(0);
+        expect(ab.getCap()).toBe(4);
+    });
+    test("Shift when there are values", () => {
         const ab = new ArrayBuffer<number>(5);
         ab.push(0);
         ab.push(10);
         ab.push(20);
         ab.push(30);
         ab.push(40);
-        expect(ab.pop()).toBe(0);
-        expect(ab.pop()).toBe(10);
-        expect(ab.pop()).toBe(20);
+        expect(ab.shift()).toBe(0);
+        expect(ab.shift()).toBe(10);
+        expect(ab.shift()).toBe(20);
         expect(ab.getTail()).toBe(30);
         expect(ab.getHead()).toBe(40);
         expect(ab.getLen()).toBe(2);
         expect(ab.getCap()).toBe(5);
     });
-    test("Pop when the tail reaches the head", () => {
+    test("Shift when the tail reaches the head", () => {
         const ab = new ArrayBuffer<number>(3);
         ab.push(111);
         ab.push(222);
         ab.push(333);
         ab.push(444);
-        expect(ab.pop()).toBe(222);
-        expect(ab.pop()).toBe(333);
-        expect(ab.pop()).toBe(444);
-        expect(ab.pop()).toBeUndefined();
+        expect(ab.shift()).toBe(222);
+        expect(ab.shift()).toBe(333);
+        expect(ab.shift()).toBe(444);
+        expect(ab.shift()).toBeUndefined();
         expect(ab.getTail()).toBeUndefined();
         expect(ab.getHead()).toBeUndefined();
         expect(ab.getLen()).toBe(0);
