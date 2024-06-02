@@ -20,7 +20,7 @@ describe("#push", () => {
         expect(ab.getLen()).toBe(3);
         expect(ab.getCap()).toBe(3);
     });
-    test("Push the more elements than the capacity", () => {
+    test("Push more elements than the capacity", () => {
         const ab = new ArrayBuffer<number>(3);
         ab.push(111);
         ab.push(222);
@@ -111,6 +111,38 @@ describe("#shift", () => {
         expect(ab.getTail()).toBeUndefined();
         expect(ab.getHead()).toBeUndefined();
         expect(ab.getLen()).toBe(0);
+        expect(ab.getCap()).toBe(3);
+    });
+});
+
+describe("#unshift", () => {
+    test("Unshift a element", () => {
+        const ab = new ArrayBuffer<number>(4);
+        ab.unshift(2);
+        expect(ab.getTail()).toBe(2);
+        expect(ab.getHead()).toBe(2);
+        expect(ab.getLen()).toBe(1);
+        expect(ab.getCap()).toBe(4);
+    });
+    test("Unshift the same number of elements than the capacity", () => {
+        const ab = new ArrayBuffer<number>(3);
+        ab.unshift(0);
+        ab.unshift(10);
+        ab.unshift(20);
+        expect(ab.getTail()).toBe(20);
+        expect(ab.getHead()).toBe(0);
+        expect(ab.getLen()).toBe(3);
+        expect(ab.getCap()).toBe(3);
+    });
+    test("Unshift more elements than the capacity", () => {
+        const ab = new ArrayBuffer<number>(3);
+        ab.unshift(11);
+        ab.unshift(22);
+        ab.unshift(33);
+        ab.unshift(44);
+        expect(ab.getTail()).toBe(44);
+        expect(ab.getHead()).toBe(22);
+        expect(ab.getLen()).toBe(3);
         expect(ab.getCap()).toBe(3);
     });
 });
