@@ -3,9 +3,9 @@ type Point = {
   y: number;
 }
 const dir = [
+  { x: 0, y: -1 },
   { x: 1, y: 0 },
   { x: 0, y: 1 },
-  { x: 0, y: -1 },
   { x: -1, y: 0 },
 ]
 
@@ -34,6 +34,7 @@ function walk(maze: string[], wall: string, current: Point, end: Point, path: Po
       return true;
     }
   }
+  path.pop();
   return false;
 }
 

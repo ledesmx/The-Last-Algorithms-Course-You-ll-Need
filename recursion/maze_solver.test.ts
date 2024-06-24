@@ -7,9 +7,9 @@ describe("Solve mazes", () => {
       "#### #",
       "#    #",
       "# ####"
-    ]
-    const start = { x: 1, y: 2 }
-    const end = { x: 4, y: 0 }
+    ];
+    const start = { x: 1, y: 2 };
+    const end = { x: 4, y: 0 };
     const result = solve(maze, '#', start, end);
     expect(result.length).toBe(6);
     expect(result).toEqual([
@@ -28,9 +28,9 @@ describe("Solve mazes", () => {
       "x x  x",
       "x xx x",
       "x xx x"
-    ]
-    const start = { x: 1, y: 4 }
-    const end = { x: 4, y: 4 }
+    ];
+    const start = { x: 1, y: 4 };
+    const end = { x: 4, y: 4 };
     const result = solve(maze, 'x', start, end);
     expect(result.length).toBe(10);
     expect(result).toEqual([
@@ -53,9 +53,9 @@ describe("Solve mazes", () => {
       "q qq ",
       "q qq ",
       "q    "
-    ]
-    const start = { x: 0, y: 1 }
-    const end = { x: 3, y: 0 }
+    ];
+    const start = { x: 0, y: 1 };
+    const end = { x: 3, y: 0 };
     const result = solve(maze, 'q', start, end);
     expect(result.length).toBe(13);
     expect(result).toEqual([
@@ -82,9 +82,9 @@ describe("Solve mazes", () => {
       "z     z",
       "z zzzzz",
       "  zzzzz"
-    ]
-    const start = { x: 5, y: 0 }
-    const end = { x: 0, y: 5 }
+    ];
+    const start = { x: 5, y: 0 };
+    const end = { x: 0, y: 5 };
     const result = solve(maze, 'z', start, end);
     expect(result.length).toBe(11);
     expect(result).toEqual([
@@ -109,9 +109,9 @@ describe("Mazes with no solution", () => {
       "xxxxxxxx",
       "    x   ",
       "xxxxxxxx"
-    ]
-    const start = { x: 0, y: 1 }
-    const end = { x: 7, y: 1 }
+    ];
+    const start = { x: 0, y: 1 };
+    const end = { x: 7, y: 1 };
     const result = solve(maze, 'x', start, end);
     expect(result.length).toBe(0);
     expect(result).toEqual([]);
@@ -123,11 +123,67 @@ describe("Mazes with no solution", () => {
       "x x x",
       "x   x",
       "xxxxx"
-    ]
-    const start = { x: 1, y: 0 }
-    const end = { x: 3, y: 0 }
+    ];
+    const start = { x: 1, y: 0 };
+    const end = { x: 3, y: 0 };
     const result = solve(maze, 'x', start, end);
     expect(result.length).toBe(0);
     expect(result).toEqual([]);
+  });
+});
+
+describe("Mazes with two paths but one solution", () => {
+  test("Seventh maze", () => {
+    const maze = [
+      "xx xxx",
+      "xx xxx",
+      "xx   x",
+      "xx x x",
+      "x  x x",
+      "x x  x",
+      "x xxxx"
+    ];
+    const start = { x: 2, y: 0 };
+    const end = { x: 1, y: 6 };
+    const result = solve(maze, 'x', start, end);
+    expect(result.length).toBe(8);
+    expect(result).toEqual([
+      { x: 2, y: 0 },
+      { x: 2, y: 1 },
+      { x: 2, y: 2 },
+      { x: 2, y: 3 },
+      { x: 2, y: 4 },
+      { x: 1, y: 4 },
+      { x: 1, y: 5 },
+      { x: 1, y: 6 }
+    ]);
+  });
+  test("Eighth maze", () => {
+    const maze = [
+      "xxxxxx",
+      "x    x",
+      "x xxxx",
+      "x     ",
+      "x xxxx",
+      "x     ",
+      "xxxxxx"
+    ];
+    const start = { x: 5, y: 3 };
+    const end = { x: 5, y: 5 };
+    const result = solve(maze, 'x', start, end)
+    expect(result.length).toBe(11);
+    expect(result).toEqual([
+      { x: 5, y: 3 },
+      { x: 4, y: 3 },
+      { x: 3, y: 3 },
+      { x: 2, y: 3 },
+      { x: 1, y: 3 },
+      { x: 1, y: 4 },
+      { x: 1, y: 5 },
+      { x: 2, y: 5 },
+      { x: 3, y: 5 },
+      { x: 4, y: 5 },
+      { x: 5, y: 5 }
+    ]);
   });
 });
