@@ -19,3 +19,19 @@ export function pre_order_search<T>(head: BinaryNode<T>): T[] {
   pre_order_walk(head, nodes);
   return nodes;
 }
+
+function in_order_walk<T>(current: BinaryNode<T> | null, nodes: T[]) {
+  if (!current) {
+    return;
+  }
+
+  in_order_walk(current.left, nodes);
+  nodes.push(current.value);
+  in_order_walk(current.right, nodes);
+}
+
+export function in_order_search<T>(head: BinaryNode<T>): T[] {
+  const nodes: T[] = [];
+  in_order_walk(head, nodes);
+  return nodes;
+}
