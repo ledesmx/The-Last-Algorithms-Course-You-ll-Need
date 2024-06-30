@@ -65,7 +65,7 @@ describe("Unbalanced tree", () => {
 
     expect(bfs(tree, 20)).toBe(true);
   });
-  test("Find 2 -> true", () => {
+  test("Find 2 -> false", () => {
     let r = genNode(14, 20, 21);
     let l = genNode(10, 13, r);
     r = genNode(4, l, 11);
