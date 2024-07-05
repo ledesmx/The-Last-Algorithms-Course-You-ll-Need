@@ -61,3 +61,83 @@ describe("#Insert", () => {
     expect(tree.root).toEqual(expectedTree);
   });
 });
+describe("#Delete", () => {
+  test("Delete root with no childs", () => {
+    const tree = new BST();
+    tree.insert(2);
+
+    tree.delete(2);
+    expect(tree.root).toBeNull();
+  });
+  test("Delete root with one child", () => {
+    const tree = new BST();
+    tree.insert(2, 8);
+
+    tree.delete(2);
+    expect(tree.root).toEqual(genNode(8, null, null));
+  });
+  test("Delete root with two children", () => {
+    const tree = new BST();
+    tree.insert(2, 4, -3);
+
+    tree.delete(2);
+    expect(tree.root).toEqual(genNode(-3, null, 4));
+  });
+  test("Delete root with two children on left side and one on right side", () => {
+    const tree = new BST();
+    tree.insert(8, 3, 0, 11);
+
+    tree.delete(8);
+    expect(tree.root).toEqual(genNode(3, 0, 11));
+  });
+  test("Delete root with many children on left side and one on right side", () => {
+    const tree = new BST();
+    tree.insert(8, 3, 0, 11, 5, 4, 7, 6);
+    const expectedTree = new BST();
+    expectedTree.insert(7, 3, 0, 11, 5, 4, 6);
+
+    tree.delete(8);
+    expect(tree.root).toEqual(expectedTree.root);
+  });
+  test("Delete node with no childs", () => {
+    const tree = new BST();
+    tree.insert(10, 5, 15);
+
+    tree.delete(5);
+    expect(tree.root).toEqual(genNode(10, null, 15));
+  });
+  test("Delete node with one child", () => {
+    const tree = new BST();
+    tree.insert(10, 5, 15, 30);
+
+    tree.delete(15);
+    expect(tree.root).toEqual(genNode(10, 5, 30));
+  });
+  test("Delete node with two children", () => {
+    const tree = new BST();
+    tree.insert(10, 5, 15, 11, 30);
+    const expectedTree = new BST();
+    expectedTree.insert(10, 5, 11, 30);
+
+    tree.delete(15);
+    expect(tree.root).toEqual(expectedTree.root);
+  });
+  test("Delete node with two children on left side and one on right side", () => {
+    const tree = new BST();
+    tree.insert(10, 5, 51, 25, 100, 15);
+    const expectedTree = new BST();
+    expectedTree.insert(10, 5, 25, 15, 100);
+
+    tree.delete(51);
+    expect(tree.root).toEqual(expectedTree.root);
+  });
+  test("Delete node with many children on left side and one on right side", () => {
+    const tree = new BST();
+    tree.insert(10, 5, 51, 25, 100, 15, 37, 30, 40, 39);
+    const expectedTree = new BST();
+    expectedTree.insert(10, 5, 40, 25, 100, 15, 37, 30, 39);
+
+    tree.delete(51);
+    expect(tree.root).toEqual(expectedTree.root);
+  });
+});
