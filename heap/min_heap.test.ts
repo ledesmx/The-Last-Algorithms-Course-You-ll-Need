@@ -27,3 +27,45 @@ describe("#insert", () => {
     expect(heap.getData()).toEqual(want);
   });
 });
+describe("#pop", () => {
+  test("Void heap", () => {
+    const heap = new MinHeap();
+    const got = heap.pop();
+    const want = null;
+    const expectedHeap: number[] = [];
+    expect(got).toBe(want);
+    expect(heap.getData()).toEqual(expectedHeap);
+  });
+  test("Heap with only one number (root)", () => {
+    const heap = new MinHeap([5]);
+    const got = heap.pop();
+    const want = 5;
+    const expectedHeap: number[] = [];
+    expect(got).toBe(want);
+    expect(heap.getData()).toEqual(expectedHeap);
+  });
+  test("Heap with only the root and one child", () => {
+    const heap = new MinHeap([5, 20]);
+    const got = heap.pop();
+    const want = 5;
+    const expectedHeap: number[] = [20];
+    expect(got).toBe(want);
+    expect(heap.getData()).toEqual(expectedHeap);
+  });
+  test("Heap with the root and two children", () => {
+    const heap = new MinHeap([5, 20, 15]);
+    const got = heap.pop();
+    const want = 5;
+    const expectedHeap: number[] = [15, 20];
+    expect(got).toBe(want);
+    expect(heap.getData()).toEqual(expectedHeap);
+  });
+  test("Heap with many children and heapify down the root", () => {
+    const heap = new MinHeap([5, 15, 25, 20, 17, 35, 30]);
+    const got = heap.pop();
+    const want = 5;
+    const expectedHeap: number[] = [15, 17, 25, 20, 30, 35];
+    expect(got).toBe(want);
+    expect(heap.getData()).toEqual(expectedHeap);
+  });
+});
