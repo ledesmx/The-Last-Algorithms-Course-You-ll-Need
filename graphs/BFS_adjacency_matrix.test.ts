@@ -20,7 +20,7 @@ test("To find path", () => {
   const needle = 1;
   const want = [0, 2, 1];
   const got = bfs(graph, source, needle);
-  expect(got).toBe(want);
+  expect(got).toEqual(want);
 });
 test("To find path when the source is not the first node", () => {
   const graph: number[][] = [
@@ -33,7 +33,7 @@ test("To find path when the source is not the first node", () => {
   const needle = 3;
   const want = [1, 2, 0, 3];
   const got = bfs(graph, source, needle);
-  expect(got).toBe(want);
+  expect(got).toEqual(want);
 });
 test("Don't find path", () => {
   const graph: number[][] = [
