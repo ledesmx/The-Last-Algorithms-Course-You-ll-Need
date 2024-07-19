@@ -5,10 +5,13 @@ type TrieNode = {
 
 export class Trie {
   private root: TrieNode;
-  constructor() {
+  constructor(...words: string[]) {
     this.root = genTrieNode();
+    for (let i=0; i < words.length; ++i) {
+      this.add(words[i]);
+    }
   }
-  add(word: string) {
+  add(word: string): void {
     this.addWalk(word, 0, this.root);
   }
   private addWalk(word: string, wordIndex: number, currentNode: TrieNode) {
@@ -23,8 +26,8 @@ export class Trie {
     }
     this.addWalk(word, wordIndex + 1, currentNode.keys[key]);
   }
-  autocomplete() {
-    
+  autocomplete(input: string): string | null {
+    return "";
   }
   getTrie(): TrieNode {
     const [...keys] = this.root.keys;

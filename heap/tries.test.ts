@@ -115,3 +115,58 @@ describe("#add", () => {
     expect(got).toEqual(want);
   });
 });
+describe("#autocomplete", () => {
+  test("Void trie", () => {
+    const trie = new Trie();
+    let input = "a";
+    let want = null;
+    let got = trie.autocomplete(input);
+    expect(got).toBe(want);
+  });
+  test("Doesn't find any word", () => {
+    const trie = new Trie("run");
+    let input = "a";
+    let want = null;
+    let got = trie.autocomplete(input);
+    expect(got).toBe(want);
+
+    input = "runn";
+    want = null;
+    got = trie.autocomplete(input);
+    expect(got).toBe(want);
+  });
+  test("Find word", () => {
+    const trie = new Trie("run");
+    let input = "r";
+    let want = "run";
+    let got = trie.autocomplete(input);
+    expect(got).toBe(want);
+
+    input = "ru";
+    want = "run";
+    got = trie.autocomplete(input);
+    expect(got).toBe(want);
+
+    input = "run";
+    want = "run";
+    got = trie.autocomplete(input);
+    expect(got).toBe(want);
+  });
+  test("Find and choose word in alphabetical order", () => {
+    const trie = new Trie("recommendation", "reconciliation", "reconstruction");
+    let input = "reco";
+    let want = "recommendation";
+    let got = trie.autocomplete(input);
+    expect(got).toBe(want);
+
+    input = "recon";
+    want = "reconciliation";
+    got = trie.autocomplete(input);
+    expect(got).toBe(want);
+
+    input = "recons";
+    want = "reconstruction";
+    got = trie.autocomplete(input);
+    expect(got).toBe(want);
+  });
+});
