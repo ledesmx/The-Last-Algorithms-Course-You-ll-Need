@@ -1,6 +1,5 @@
 import { describe, test, expect } from "bun:test";
 import { Trie, getCharIndex, genTrieNode } from "./tries.ts"
-import type { TrieNode } from "./tries.ts";
 
 describe("#add", () => {
   test("Trie without nodes", () => {
@@ -37,7 +36,7 @@ describe("#add", () => {
   test("Extend the trie with a similar word (run -> runner)", () => {
     const trie = new Trie();
     trie.add("run");
-    trie.add("runnner");
+    trie.add("runner");
 
     const r = getCharIndex("r");
     const u = getCharIndex("u");
