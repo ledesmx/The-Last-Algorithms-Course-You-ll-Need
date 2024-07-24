@@ -1,4 +1,4 @@
-import { describe, test, expect } from "bun:test";
+import { test, expect } from "bun:test";
 import { bfs } from "./BFS_adjacency_matrix.ts";
 
 test("Void graph", () => {
