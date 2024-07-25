@@ -36,6 +36,20 @@ test("To find path when the source is not the first node", () => {
   const got = dfs(graph, source, needle);
   expect(got).toEqual(want);
 });
+test("Two possible paths and the last path is the correct one", () => {
+  const graph: WeightedAdjacencyList = [
+    [{ to: 2, weight: 5 }, { to: 3, weight: 5 }],
+    [],
+    [{ to: 1, weight: 9 }, { to: 0, weight: 7 }],
+    [{ to: 0, weight: 4 }, { to: 4, weight: 7 }],
+    []
+  ];
+  const source = 0;
+  const needle = 4;
+  const want = [0, 3, 4];
+  const got = dfs(graph, source, needle);
+  expect(got).toEqual(want);
+});
 test("Don't find path", () => {
   const graph: WeightedAdjacencyList = [
     [{ to: 1, weight: 3 }, { to: 4, weight: 5 }],
