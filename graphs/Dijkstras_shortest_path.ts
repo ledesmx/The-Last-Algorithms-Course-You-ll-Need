@@ -4,6 +4,6 @@ type Connection = {
 };
 export type WeightedAdjacencyList = Connection[][];
 
-export function dijkstra_list(graph: WeightedAdjacencyList, source: number, sink: number): number[] {
+export function dijkstra_list(graph: WeightedAdjacencyList, source: number, sink: number): number[] | null {
   return [];
 }

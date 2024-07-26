@@ -50,3 +50,16 @@ test("When there are multiple path to the sink, bun only one of them is the shot
   const got = dijkstra_list(graph, source, sink);
   expect(got).toEqual(want);
 });
+test("Don't find path", () => {
+  const graph: WeightedAdjacencyList = [
+    [{to: 1, weight: 2}],
+    [{to: 3, weight: 2}],
+    [{to: 0, weight: 1}, {to: 3, weight: 4}],
+    [{to: 0, weight: 3}]
+  ];
+  const source = 0;
+  const sink = 7;
+  const want = null;
+  const got = dijkstra_list(graph, source, sink);
+  expect(got).toBe(want);
+});
