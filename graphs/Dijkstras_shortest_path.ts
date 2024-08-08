@@ -51,25 +51,17 @@ export function dijkstra_list(graph: WeightedAdjacencyList, source: number, sink
 }
 
 function getNearestUnseenNode(seen: boolean[], distance: number[]): number {
-  let lowest = -1;
+  let nearest = -1;
+  let lowestDistance = Infinity;
 
-  for (let i=0; i<seen.length; ++i) {
-    if (!seen[i] && distance[i] !== Infinity) {
-      lowest = i;
-      break;
+  for (let i=0; i < seen.length; ++i) {
+    if (!seen[i] && lowestDistance > distance[i]) {
+      lowestDistance = distance[i];
+      nearest = i;
     }
   }
-  if (lowest === -1) {
-    return -1;
-  }
 
-  for (let i=0; i<seen.length; ++i) {
-    if (!seen[i] && distance[i] < distance[lowest]) {
-      lowest = i;
-    }
-  }
-  
-  return lowest;
+  return nearest;
 }
 
 function hasUnvisitedNode(seen: boolean[]): boolean {
