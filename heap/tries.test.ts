@@ -1,5 +1,5 @@
 import { describe, test, expect } from "bun:test";
-import { Trie, getCharIndex, genTrieNode } from "./tries.ts"
+import { Trie, getCharIndex, genTrieNode } from "./tries.ts";
 
 describe("#add", () => {
   test("Trie without nodes", () => {
@@ -10,7 +10,7 @@ describe("#add", () => {
     const u = getCharIndex("u");
     const n = getCharIndex("n");
     const want = genTrieNode();
-    let current = want.keys[r] = genTrieNode();
+    let current = (want.keys[r] = genTrieNode());
     current = current.keys[u] = genTrieNode();
     current.keys[n] = genTrieNode(true);
 
@@ -26,7 +26,7 @@ describe("#add", () => {
     const u = getCharIndex("u");
     const n = getCharIndex("n");
     const want = genTrieNode();
-    let current = want.keys[r] = genTrieNode();
+    let current = (want.keys[r] = genTrieNode());
     current = current.keys[u] = genTrieNode();
     current.keys[n] = genTrieNode(true);
 
@@ -43,7 +43,7 @@ describe("#add", () => {
     const n = getCharIndex("n");
     const e = getCharIndex("e");
     const want = genTrieNode();
-    let current = want.keys[r] = genTrieNode();
+    let current = (want.keys[r] = genTrieNode());
     current = current.keys[u] = genTrieNode();
     current = current.keys[n] = genTrieNode(true);
     current = current.keys[n] = genTrieNode();
@@ -66,14 +66,13 @@ describe("#add", () => {
     const o = getCharIndex("o");
     const want = genTrieNode();
     // run
-    let current = want.keys[r] = genTrieNode(); 
+    let current = (want.keys[r] = genTrieNode());
     current = current.keys[u] = genTrieNode();
     current.keys[n] = genTrieNode(true);
     // two
-    current = want.keys[t] = genTrieNode(); 
+    current = want.keys[t] = genTrieNode();
     current = current.keys[w] = genTrieNode();
     current.keys[o] = genTrieNode(true);
-
 
     const got = trie.getTrie();
     expect(got).toEqual(want);
@@ -95,7 +94,7 @@ describe("#add", () => {
     const g = getCharIndex("g");
     const want = genTrieNode();
     // mus
-    let current = want.keys[m] = genTrieNode(); 
+    let current = (want.keys[m] = genTrieNode());
     current = current.keys[u] = genTrieNode();
     current = current.keys[s] = genTrieNode();
     const snode = current;
@@ -105,11 +104,10 @@ describe("#add", () => {
     current = current.keys[a] = genTrieNode();
     current.keys[l] = genTrieNode(true);
     // mustang
-    current = snode.keys[t] = genTrieNode(); 
+    current = snode.keys[t] = genTrieNode();
     current = current.keys[a] = genTrieNode();
     current = current.keys[n] = genTrieNode();
     current.keys[g] = genTrieNode(true);
-
 
     const got = trie.getTrie();
     expect(got).toEqual(want);

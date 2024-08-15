@@ -7,9 +7,7 @@ export class LRU<K, V> {
     this.size = size;
   }
 
-  update(key: K, value: V):void {
-    
-  }
+  update(key: K, value: V): void {}
   get(key: K): V | undefined {
     return undefined;
   }

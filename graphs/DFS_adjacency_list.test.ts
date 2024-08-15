@@ -12,10 +12,16 @@ test("Void graph", () => {
 });
 test("To find path", () => {
   const graph: WeightedAdjacencyList = [
-    [{ to: 2, weight: 10 }, { to: 3, weight: 15 }],
+    [
+      { to: 2, weight: 10 },
+      { to: 3, weight: 15 },
+    ],
     [{ to: 2, weight: 20 }],
-    [{ to: 0, weight: 9 }, { to: 1, weight: 3 }],
-    [{ to: 2, weight: 5 }]
+    [
+      { to: 0, weight: 9 },
+      { to: 1, weight: 3 },
+    ],
+    [{ to: 2, weight: 5 }],
   ];
   const source = 0;
   const needle = 1;
@@ -25,10 +31,16 @@ test("To find path", () => {
 });
 test("To find path when the source is not the first node", () => {
   const graph: WeightedAdjacencyList = [
-    [{ to: 2, weight: 10 }, { to: 3, weight: 15 }],
+    [
+      { to: 2, weight: 10 },
+      { to: 3, weight: 15 },
+    ],
     [{ to: 2, weight: 20 }],
-    [{ to: 0, weight: 9 }, { to: 1, weight: 3 }],
-    [{ to: 2, weight: 5 }]
+    [
+      { to: 0, weight: 9 },
+      { to: 1, weight: 3 },
+    ],
+    [{ to: 2, weight: 5 }],
   ];
   const source = 1;
   const needle = 3;
@@ -38,11 +50,20 @@ test("To find path when the source is not the first node", () => {
 });
 test("Two possible paths and the last path is the correct one", () => {
   const graph: WeightedAdjacencyList = [
-    [{ to: 2, weight: 5 }, { to: 3, weight: 5 }],
+    [
+      { to: 2, weight: 5 },
+      { to: 3, weight: 5 },
+    ],
     [],
-    [{ to: 1, weight: 9 }, { to: 0, weight: 7 }],
-    [{ to: 0, weight: 4 }, { to: 4, weight: 7 }],
-    []
+    [
+      { to: 1, weight: 9 },
+      { to: 0, weight: 7 },
+    ],
+    [
+      { to: 0, weight: 4 },
+      { to: 4, weight: 7 },
+    ],
+    [],
   ];
   const source = 0;
   const needle = 4;
@@ -52,11 +73,14 @@ test("Two possible paths and the last path is the correct one", () => {
 });
 test("Don't find path", () => {
   const graph: WeightedAdjacencyList = [
-    [{ to: 1, weight: 3 }, { to: 4, weight: 5 }],
+    [
+      { to: 1, weight: 3 },
+      { to: 4, weight: 5 },
+    ],
     [{ to: 3, weight: 7 }],
     [{ to: 1, weight: 4 }],
     [{ to: 2, weight: 3 }],
-    [{ to: 1, weight: 2 }]
+    [{ to: 1, weight: 2 }],
   ];
   const source = 4;
   const needle = 0;

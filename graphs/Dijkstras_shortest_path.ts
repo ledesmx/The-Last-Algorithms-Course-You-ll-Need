@@ -4,8 +4,12 @@ type Connection = {
 };
 export type WeightedAdjacencyList = Connection[][];
 
-export function dijkstra_list(graph: WeightedAdjacencyList, source: number, sink: number): number[] | null {
-  if (source >= graph.length, sink >= graph.length) {
+export function dijkstra_list(
+  graph: WeightedAdjacencyList,
+  source: number,
+  sink: number,
+): number[] | null {
+  if ((source >= graph.length, sink >= graph.length)) {
     return null;
   }
 
@@ -18,7 +22,6 @@ export function dijkstra_list(graph: WeightedAdjacencyList, source: number, sink
   while (hasUnvisitedNode(seen)) {
     const nearestNode = getNearestUnseenNode(seen, distance);
     if (nearestNode === -1) {
-
       break;
     }
 
@@ -27,7 +30,7 @@ export function dijkstra_list(graph: WeightedAdjacencyList, source: number, sink
       break;
     }
 
-    for (let i=0; i<graph[nearestNode].length; ++i) {
+    for (let i = 0; i < graph[nearestNode].length; ++i) {
       const edge = graph[nearestNode][i];
       if (seen[edge.to] === true) {
         continue; // omit the node when it is already marked as seen
@@ -54,7 +57,7 @@ function getNearestUnseenNode(seen: boolean[], distance: number[]): number {
   let nearest = -1;
   let lowestDistance = Infinity;
 
-  for (let i=0; i < seen.length; ++i) {
+  for (let i = 0; i < seen.length; ++i) {
     if (!seen[i] && lowestDistance > distance[i]) {
       lowestDistance = distance[i];
       nearest = i;
@@ -65,7 +68,7 @@ function getNearestUnseenNode(seen: boolean[], distance: number[]): number {
 }
 
 function hasUnvisitedNode(seen: boolean[]): boolean {
-  for (let i=0; i<seen.length; ++i) {
+  for (let i = 0; i < seen.length; ++i) {
     if (!seen[i]) {
       return true;
     }
@@ -78,7 +81,12 @@ function getPath(previous: number[], source: number, sink: number): number[] {
   path.reverse();
   return path;
 }
-function getPathWalk(previous: number[], source: number, currentNode: number, path: number[]): number[] {
+function getPathWalk(
+  previous: number[],
+  source: number,
+  currentNode: number,
+  path: number[],
+): number[] {
   path.push(currentNode);
   if (currentNode === source) {
     return path;

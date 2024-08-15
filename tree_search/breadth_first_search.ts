@@ -7,7 +7,7 @@ export type BinaryNode<T> = {
 type QNode<T> = {
   value: T;
   next: QNode<T> | null;
-}
+};
 class Queue<T> {
   private head: QNode<T> | null;
   private length: number;

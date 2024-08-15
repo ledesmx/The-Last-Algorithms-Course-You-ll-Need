@@ -14,7 +14,7 @@ test("To find path", () => {
     [0, 0, 10, 15],
     [0, 0, 20, 0],
     [9, 3, 0, 0],
-    [0, 0, 5, 0]
+    [0, 0, 5, 0],
   ];
   const source = 0;
   const needle = 1;
@@ -27,7 +27,7 @@ test("To find path when the source is not the first node", () => {
     [0, 0, 10, 15],
     [0, 0, 20, 0],
     [9, 3, 0, 0],
-    [0, 0, 5, 0]
+    [0, 0, 5, 0],
   ];
   const source = 1;
   const needle = 3;
@@ -41,7 +41,7 @@ test("Don't find path", () => {
     [0, 0, 0, 7, 0],
     [0, 4, 0, 0, 0],
     [0, 0, 3, 0, 0],
-    [0, 2, 0, 0, 0]
+    [0, 2, 0, 0, 0],
   ];
   const source = 4;
   const needle = 0;

@@ -2,12 +2,16 @@ import { describe, test, expect } from "bun:test";
 import { bfs } from "./breadth_first_search";
 import type { BinaryNode } from "./breadth_first_search";
 
-function genNode(value: number, left: number | null | BinaryNode<number>, right: number | null | BinaryNode<number>): BinaryNode<number> {
+function genNode(
+  value: number,
+  left: number | null | BinaryNode<number>,
+  right: number | null | BinaryNode<number>,
+): BinaryNode<number> {
   let l;
   if (!left) {
     l = null;
   } else if (typeof left === "number") {
-    l = { value: left, left: null, right: null }
+    l = { value: left, left: null, right: null };
   } else {
     l = left;
   }
@@ -15,7 +19,7 @@ function genNode(value: number, left: number | null | BinaryNode<number>, right:
   if (!right) {
     r = null;
   } else if (typeof right === "number") {
-    r = { value: right, left: null, right: null }
+    r = { value: right, left: null, right: null };
   } else {
     r = right;
   }

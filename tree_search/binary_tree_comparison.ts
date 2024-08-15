@@ -2,9 +2,12 @@ export type BinaryNode<T> = {
   value: T;
   left: BinaryNode<T> | null;
   right: BinaryNode<T> | null;
-}
+};
 
-function walk(a: BinaryNode<number> | null, b: BinaryNode<number> | null): boolean {
+function walk(
+  a: BinaryNode<number> | null,
+  b: BinaryNode<number> | null,
+): boolean {
   if (a === null && b === null) {
     return true;
   }
@@ -21,4 +24,3 @@ function walk(a: BinaryNode<number> | null, b: BinaryNode<number> | null): boole
 export function compare(a: BinaryNode<number>, b: BinaryNode<number>): boolean {
   return walk(a, b);
 }
-

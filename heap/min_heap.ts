@@ -12,7 +12,7 @@ export class MinHeap {
   insert(value: number): void {
     this.data[this.length] = value;
     this.length++;
-    this.heapifyUp(this.length - 1)
+    this.heapifyUp(this.length - 1);
   }
   pop(): number | null {
     if (this.length === 0) {
@@ -61,12 +61,14 @@ export class MinHeap {
     }
 
     // Two children
-    if (leftValue < rightValue && leftValue < currentValue) { // left < right
+    if (leftValue < rightValue && leftValue < currentValue) {
+      // left < right
       this.swap(leftIndex, current);
       this.heapifyDown(leftIndex);
       return;
     }
-    if (rightValue < leftValue && rightValue < currentValue) { // right < left
+    if (rightValue < leftValue && rightValue < currentValue) {
+      // right < left
       this.swap(rightIndex, current);
       this.heapifyDown(rightIndex);
     }
@@ -80,9 +82,9 @@ export class MinHeap {
     return Math.floor((index - 1) / 2);
   }
   private getLeftIndex(index: number): number {
-    return (2 * index) + 1;
+    return 2 * index + 1;
   }
   private getRightIndex(index: number): number {
-    return (2 * index) + 2;
+    return 2 * index + 2;
   }
 }

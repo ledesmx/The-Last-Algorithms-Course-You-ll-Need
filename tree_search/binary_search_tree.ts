@@ -2,7 +2,7 @@ export type BinaryNode<T> = {
   value: T;
   left: BinaryNode<T> | null;
   right: BinaryNode<T> | null;
-}
+};
 
 export class BST {
   root: BinaryNode<number> | null;
@@ -12,7 +12,10 @@ export class BST {
   find(value: number): boolean {
     return this.find_walk(this.root, value);
   }
-  private find_walk(current: BinaryNode<number> | null, value: number): boolean {
+  private find_walk(
+    current: BinaryNode<number> | null,
+    value: number,
+  ): boolean {
     if (!current) {
       return false;
     }
@@ -36,7 +39,8 @@ export class BST {
     }
   }
   private insert_walk(current: BinaryNode<number> | null, value: number): void {
-    if (!current) { // This should not happen
+    if (!current) {
+      // This should not happen
       return;
     }
 
@@ -70,7 +74,10 @@ export class BST {
       this.delete_root();
       return;
     }
-    const parent = this.find_parent(value, this.root || { value: 0, left: null, right: null });
+    const parent = this.find_parent(
+      value,
+      this.root || { value: 0, left: null, right: null },
+    );
     if (parent === null) {
       // If there is no parent then the value was not finded in the tree
       return;
@@ -84,7 +91,11 @@ export class BST {
       return;
     }
   }
-  private delete_child_on_side(parent: BinaryNode<number>, node: BinaryNode<number>, side: "left" | "right"): void {
+  private delete_child_on_side(
+    parent: BinaryNode<number>,
+    node: BinaryNode<number>,
+    side: "left" | "right",
+  ): void {
     if (node.left === null && node.right === null) {
       parent[side] = null;
       return;
@@ -115,7 +126,9 @@ export class BST {
     }
     return this.find_largest(node.right);
   }
-  private find_parent_of_largest(node: BinaryNode<number>): BinaryNode<number> | null {
+  private find_parent_of_largest(
+    node: BinaryNode<number>,
+  ): BinaryNode<number> | null {
     if (node.right === null) {
       return null;
     }
@@ -124,7 +137,10 @@ export class BST {
     }
     return this.find_parent_of_largest(node.right);
   }
-  private find_parent(value: number, current: BinaryNode<number>): BinaryNode<number> | null {
+  private find_parent(
+    value: number,
+    current: BinaryNode<number>,
+  ): BinaryNode<number> | null {
     if (value <= current.value) {
       if (current.left === null) {
         return null;

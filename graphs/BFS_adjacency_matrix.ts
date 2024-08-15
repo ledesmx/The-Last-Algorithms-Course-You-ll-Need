@@ -3,7 +3,7 @@ type WeightedAdjacencyMatrix = number[][];
 type QNode<T> = {
   value: T;
   next: QNode<T> | null;
-}
+};
 class Queue<T> {
   private head: QNode<T> | null;
   private length: number;
@@ -30,19 +30,23 @@ class Queue<T> {
   }
 }
 
-export function bfs(graph: WeightedAdjacencyMatrix, source: number, needle: number): number[] | null {
+export function bfs(
+  graph: WeightedAdjacencyMatrix,
+  source: number,
+  needle: number,
+): number[] | null {
   if (graph.length <= 0) {
     return null;
   }
-  
+
   const queue = new Queue<number>();
   const seen = new Array(graph.length).fill(false);
   const previousNode = new Array(graph.length).fill(-1);
 
   queue.enqueue(source);
   seen[source] = true;
-  // previousNode[source] = 
-  while(queue.len() > 0) {
+  // previousNode[source] =
+  while (queue.len() > 0) {
     const currentNode = queue.deque();
     if (currentNode === null) {
       return null;
@@ -50,7 +54,7 @@ export function bfs(graph: WeightedAdjacencyMatrix, source: number, needle: numb
     if (currentNode === needle) {
       break;
     }
-    for (let i=0; i<graph[currentNode].length; ++i) {
+    for (let i = 0; i < graph[currentNode].length; ++i) {
       if (graph[currentNode][i] === 0) {
         continue;
       }
@@ -73,10 +77,14 @@ export function bfs(graph: WeightedAdjacencyMatrix, source: number, needle: numb
   return path;
 }
 
-function getPathFromNeedleToSource(previousNode: number[], source: number, needle: number): number[] {
+function getPathFromNeedleToSource(
+  previousNode: number[],
+  source: number,
+  needle: number,
+): number[] {
   const path: number[] = [];
   let current = needle;
-  for (let i=0; i<previousNode.length; ++i) {
+  for (let i = 0; i < previousNode.length; ++i) {
     path.push(current);
     if (current === source) {
       break;

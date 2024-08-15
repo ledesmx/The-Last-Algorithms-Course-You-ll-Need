@@ -1,13 +1,13 @@
 type TrieNode = {
   keys: TrieNode[];
   isWord: boolean;
-}
+};
 
 export class Trie {
   private root: TrieNode;
   constructor(...words: string[]) {
     this.root = genTrieNode();
-    for (let i=0; i < words.length; ++i) {
+    for (let i = 0; i < words.length; ++i) {
       this.add(words[i]);
     }
   }
@@ -28,12 +28,14 @@ export class Trie {
   }
   autocomplete(input: string): string | null {
     const node = this.getLastNode(input);
-    if (node === null) {// Last Node does no exist in the Trie
+    if (node === null) {
+      // Last Node does no exist in the Trie
       return null;
     }
 
     const word = this.getFirstWordFromInput(input, node);
-    if (word === null) {// Not found any word
+    if (word === null) {
+      // Not found any word
       return null;
     }
     return word;
@@ -43,24 +45,31 @@ export class Trie {
       return null;
     }
     let lastNode = this.root;
-    for (let i=0; i < word.length; ++i) {
+    for (let i = 0; i < word.length; ++i) {
       const key = getCharIndex(word, i);
       if (lastNode.keys[key] === undefined) {
-        console.log(word, "null")
+        console.log(word, "null");
         return null;
       }
       lastNode = lastNode.keys[key];
     }
     return lastNode;
   }
-  private getFirstWordFromInput(input: string, currentNode: TrieNode): string | null {
-    if (currentNode.isWord) {// Found a possible word
+  private getFirstWordFromInput(
+    input: string,
+    currentNode: TrieNode,
+  ): string | null {
+    if (currentNode.isWord) {
+      // Found a possible word
       return input;
     }
-    for (let i=0; i < currentNode.keys.length; ++i) {
+    for (let i = 0; i < currentNode.keys.length; ++i) {
       if (currentNode.keys[i] !== undefined) {
         const char = getCharByIndexCode(i);
-        return this.getFirstWordFromInput(`${input}${char}`, currentNode.keys[i]);
+        return this.getFirstWordFromInput(
+          `${input}${char}`,
+          currentNode.keys[i],
+        );
       }
     }
     return null;

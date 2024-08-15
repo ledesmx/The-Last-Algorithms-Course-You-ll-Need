@@ -3,12 +3,16 @@ import { BST } from "./binary_search_tree";
 import type { BinaryNode } from "./binary_search_tree";
 import { compare } from "./binary_tree_comparison";
 
-function genNode(value: number, left: number | null | BinaryNode<number>, right: number | null | BinaryNode<number>): BinaryNode<number> {
+function genNode(
+  value: number,
+  left: number | null | BinaryNode<number>,
+  right: number | null | BinaryNode<number>,
+): BinaryNode<number> {
   let l;
   if (left === null) {
     l = null;
   } else if (typeof left === "number") {
-    l = { value: left, left: null, right: null }
+    l = { value: left, left: null, right: null };
   } else {
     l = left;
   }
@@ -16,7 +20,7 @@ function genNode(value: number, left: number | null | BinaryNode<number>, right:
   if (right === null) {
     r = null;
   } else if (typeof right === "number") {
-    r = { value: right, left: null, right: null }
+    r = { value: right, left: null, right: null };
   } else {
     r = right;
   }

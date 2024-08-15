@@ -1,16 +1,28 @@
 type Point = {
   x: number;
   y: number;
-}
+};
 const dir = [
   { x: 0, y: -1 },
   { x: 1, y: 0 },
   { x: 0, y: 1 },
   { x: -1, y: 0 },
-]
+];
 
-function walk(maze: string[], wall: string, current: Point, end: Point, path: Point[], seen: Set<string>): boolean {
-  if (current.y < 0 || current.y >= maze.length || current.x < 0 || current.x >= maze[0].length) {
+function walk(
+  maze: string[],
+  wall: string,
+  current: Point,
+  end: Point,
+  path: Point[],
+  seen: Set<string>,
+): boolean {
+  if (
+    current.y < 0 ||
+    current.y >= maze.length ||
+    current.x < 0 ||
+    current.x >= maze[0].length
+  ) {
     return false;
   }
   if (maze[current.y][current.x] === wall) {
@@ -38,7 +50,12 @@ function walk(maze: string[], wall: string, current: Point, end: Point, path: Po
   return false;
 }
 
-export function solve(maze: string[], wall: string, start: Point, end: Point): Point[] {
+export function solve(
+  maze: string[],
+  wall: string,
+  start: Point,
+  end: Point,
+): Point[] {
   const path: Point[] = [];
   const seen = new Set<string>();
   const ok = walk(maze, wall, start, end, path, seen);
