@@ -1,6 +1,5 @@
 import { describe, test, expect } from "bun:test";
 import { LRU } from "./lru_cache.ts";
-import type { SHA224 } from "bun";
 
 describe("LRU cache", () => {
   test("Should return undefined for a non-existing key", () => {
