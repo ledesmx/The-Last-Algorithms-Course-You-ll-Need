@@ -47,4 +47,16 @@ describe("LRU cache", () => {
     expect(cache.get("juan")).toBe(27);
     expect(cache.get("clara")).toBe(22);
   });
+  test("Should get the last recently used item, store a new item and evict the last one", () => {
+    const cache = new LRU<string, number>(2);
+    cache.update("yes", 1);
+    cache.update("no", 0);
+    cache.get("yes");
+    cache.update("maybe", 3);
+
+    // When you get one item you use it, so it is the most recently used item so far
+    expect(cache.get("yes")).toBe(1);
+    expect(cache.get("no")).toBeUndefined();
+    expect(cache.get("maybe")).toBe(3);
+  });
 });
