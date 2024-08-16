@@ -25,10 +25,6 @@ export class LRU<K, V> {
 
     if (node === undefined) {
       const newNode = this.LL.insertAtHead({ key, value });
-      // if (newNode === null) {
-      //   console.error("null node | null head");
-      //   return;
-      // }
       this.map.set(key, newNode);
 
       if (this.LL.len() > this.size) {
